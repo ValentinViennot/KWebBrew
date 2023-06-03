@@ -4,7 +4,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <meta name="HandheldFriendly" content="true" />
-   
+
   <title>Sudoku</title>
   <script src='./sudoku.js'></script>
   <link href="./main.css" rel="stylesheet">
@@ -13,132 +13,130 @@
 
 <body>
   <div class="entry" id="title">
-    <h1 id="title_text">Kindle Sudoku - Local Web App</h1>
-    <button onclick="enterNumber(this.innerHTML)">1</button><button
-      onclick="enterNumber(this.innerHTML)">2</button><button onclick="enterNumber(this.innerHTML)">3</button><button
-      onclick="enterNumber(this.innerHTML)">4</button><button onclick="enterNumber(this.innerHTML)">5</button>
-    <button onclick="enterNumber(this.innerHTML)">6</button><button
-      onclick="enterNumber(this.innerHTML)">7</button><button onclick="enterNumber(this.innerHTML)">8</button><button
-      onclick="enterNumber(this.innerHTML)">9</button>
-    <button onclick="enterNumber(this.innerHTML)">X</button>
+    <div class="entry">
+      <button style="width:200px" id="make_notes" onclick="toggleNotes()">Number</button>
+      <!-- <button onclick="generate('easy')">CHEAT</button> -->
+      <button onclick="generate('medium')">Easy</button>
+      <button onclick="generate('very-hard')">Medium</button>
+      <button onclick="generate('insane')">Hard</button>
+      <button onclick="solve(false)">Check</button>
+    </div>
+    <div class="entry">
+      <button onclick="enterNumber(this.innerHTML)">1</button>
+      <button onclick="enterNumber(this.innerHTML)">2</button>
+      <button onclick="enterNumber(this.innerHTML)">3</button>
+      <button onclick="enterNumber(this.innerHTML)">4</button>
+      <button onclick="enterNumber(this.innerHTML)">5</button>
+      <button onclick="enterNumber(this.innerHTML)">6</button>
+      <button onclick="enterNumber(this.innerHTML)">7</button>
+      <button onclick="enterNumber(this.innerHTML)">8</button>
+      <button onclick="enterNumber(this.innerHTML)">9</button>
+      <button onclick="enterNumber(this.innerHTML)">X</button>
+    </div>
   </div>
 
-  <hr>
+  <table id="sudoku-board">
+    <tr>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr class="bottom-border">
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr class="bottom-border">
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+    <tr class="bottom-border">
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td class="right-border">.</td>
+      <td>.</td>
+      <td>.</td>
+      <td>.</td>
+    </tr>
+  </table>
 
-  <center>
-    <table id="sudoku-board">
-      <tr>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-      <tr>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-      <tr class="bottom-border">
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-      <tr>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-      <tr>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-      <tr class="bottom-border">
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-      <tr>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-      <tr>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-      <tr class="bottom-border">
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td class="right-border">.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-    </table>
-  </center>
-
-  <div id="footer">
-    <button style="width:200px" id="make_notes" onclick="toggleNotes()">Notes</button>
-    <div class="hline"></div>
-    <h2>Generate:</h2>
-    <button onclick="generate('medium')">Easy</button>
-    <button onclick="generate('very-hard')">Medium</button>
-    <button onclick="generate('insane')">Hard</button>
-    <div class="hline"></div>
-    <button onclick="solve()">Check</button>
-  </div>
 </body>
 
 </html>
