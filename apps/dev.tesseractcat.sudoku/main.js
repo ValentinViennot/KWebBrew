@@ -92,15 +92,19 @@ function generate(difficulty, skipConfirm) {
   }
 }
 
-function solve() {
-  solution = sudoku.solve(level);
+function solve(reverse) {
+  solution = sudoku.solve(level, reverse);
   tds = document.getElementsByTagName("td");
   num = 0
   for (i = 0; i < tds.length; i++) {
     if (tds[i].dataset.editable == "true") {
       if (tds[i].getElementsByClassName("number")[0].innerHTML != solution[num].replace(".", " ")) {
-        alert("Incorrect!");
-        return;
+        if (reverse) {
+          alert("Incorrect!");
+          return;
+        } else {
+          return solve(true);
+        }
       }
     }
     num++;
