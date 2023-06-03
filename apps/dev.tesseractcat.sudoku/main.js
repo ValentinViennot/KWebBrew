@@ -24,7 +24,7 @@ function enterNumber(num) {
 
   for (var i = 0; i < selected.length; i++) {
     var e = selected[i];
-    if (make_notes.innerHTML != "Number") {
+    if (make_notes.innerHTML != "Notes") {
       if (num == "X") {
         e.getElementsByClassName("number")[0].innerHTML = "";
         e.getElementsByClassName("notes")[0].style.display = "block";
@@ -50,10 +50,12 @@ function enterNumber(num) {
 }
 
 function toggleNotes() {
-  if (make_notes.innerHTML == "Notes") {
-    make_notes.innerHTML = "Number";
+  var NOTES = "Notes";
+  var NUMBER = "Number";
+  if (make_notes.innerHTML == NOTES) {
+    make_notes.innerHTML = NUMBER;
   } else {
-    make_notes.innerHTML = "Notes";
+    make_notes.innerHTML = NOTES;
   }
 }
 
